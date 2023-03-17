@@ -11,25 +11,25 @@ class User(BaseModel):
     age: int
 
     @validator('id')
-    def id_must_be_positive(self, value):
+    def id_must_be_positive(cls, value):
         if value < 0:
             raise ValueError('Id must be a positive value')
         return value
 
     @validator('name')
-    def name_must_not_be_empty(self, value):
+    def name_must_not_be_empty(cls, value):
         if not value.strip():
             raise ValueError('Name must not be empty')
         return value
 
     @validator('surname')
-    def surname_must_not_be_empty(self, value):
+    def surname_must_not_be_empty(cls, value):
         if not value.strip():
             raise ValueError('Surname must not be empty')
         return value
 
     @validator('age')
-    def age_must_be_positive(self, value):
+    def age_must_be_positive(cls, value):
         if value < 0:
             raise ValueError('Age must be a positive value')
         return value
@@ -90,6 +90,8 @@ async def user(id: int):
 
     if not found:
         return {"error": "User has not been deleted"}
+
+    return {"message": f"User {id} has been deleted"}
 
 
 def search_user(id: int):
