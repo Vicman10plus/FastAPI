@@ -13,25 +13,25 @@ class User(BaseModel):
     @validator('id')
     def id_must_be_positive(self, value):
         if value < 0:
-            raise ValueError('El id debe ser un entero positivo')
+            raise ValueError('Id must be a positive value')
         return value
 
     @validator('name')
     def name_must_not_be_empty(self, value):
         if not value.strip():
-            raise ValueError('El nombre no debe estar vacío')
+            raise ValueError('Name must not be empty')
         return value
 
     @validator('surname')
     def surname_must_not_be_empty(self, value):
         if not value.strip():
-            raise ValueError('El apellido no debe estar vacío')
+            raise ValueError('Surname must not be empty')
         return value
 
     @validator('age')
     def age_must_be_positive(self, value):
         if value < 0:
-            raise ValueError('La edad debe ser un entero positivo')
+            raise ValueError('Age must be a positive value')
         return value
 
 
